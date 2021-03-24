@@ -271,7 +271,6 @@ class BookStoresController extends Controller
     public function action_book_destroy($book_id, $user_id)
     {
 
-        //dd($book_id);
         DB::table('book_books')->where('id', '=', $book_id)->delete();
         $books = DB::table('book_stores')
             ->leftJoin('book_books', 'book_stores.id', '=', 'book_books.book_id')
