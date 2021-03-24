@@ -276,7 +276,7 @@ class BookStoresController extends Controller
             ->leftJoin('book_books', 'book_stores.id', '=', 'book_books.book_id')
             ->where('user_id', $user_id)
             ->get();
-        //$books = DB::table('book_books')->where('user_id', $user_id)->get();
+        //at
         return view('book_stores.action_create', [
             'books' => $books,
         ]);
