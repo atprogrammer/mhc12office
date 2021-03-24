@@ -57,7 +57,6 @@ class BookStoresController extends Controller
 
     public function store_old(Request $request)
     {
-        // dd($request);
         //ตรวจสอบข้อมูล
         $request->validate([
 
@@ -124,7 +123,6 @@ class BookStoresController extends Controller
             'books' => $books,
             'ch' => 'old',
         ]);
-        //dd($books);
 
     }
 
