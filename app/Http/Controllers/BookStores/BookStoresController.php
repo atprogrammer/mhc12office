@@ -130,7 +130,6 @@ class BookStoresController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
         //ตรวจสอบข้อมูล
         $request->validate([
             'name_book' => 'required',
