@@ -35,7 +35,9 @@ class PDFController extends Controller
 
         // PDF::Output('PDF-Report.pdf','I');
       
-        $view = \View::make('pdf.testpdf');
+        $view = \View::make('pdf.testpdf',[
+            'data'=>'สวัสดีครับ'
+            ]);
         $html_content = $view->render();
         PDF::SetY(10);  //ระยะห่างจากด้านบนมาล่าง
         PDF::SetFont('THSarabunNew', 'B', 16, '', 'false');

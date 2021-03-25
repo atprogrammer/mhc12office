@@ -40,7 +40,7 @@
            </tr>
             <tr>
               <td align="center">2</td>
-              <td > น้ำDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD</td>
+              <td > น้ำ {{$data}}DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD</td>
               <td align="center">DDDD</td>
             </tr>
             <tr>
