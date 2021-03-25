@@ -51,8 +51,6 @@
 
 
 
-
-
 <div class="form-row">
     <div class="form-group col-md-4">
         {!! Form::label('l_book_date', 'วันที่เบิก', ['class' => 'col-sm-6 col-form-label']) !!} 
@@ -61,6 +59,20 @@
     <div class="form-group col-md-4">
             {!! Form::label('l_book_value', 'ชื่อผู้ขอเบิก', ['class' => 'col-sm-6 col-form-label']) !!}
             <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}" disabled>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+            {!! Form::label('l_book_value', 'ขอรับการสนับสนุนสื่อต่างๆเพื่อใช้', ['class' => 'col-sm-6 col-form-label']) !!}
+            <input type="text" class="form-control" id="objective" >
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+            {!! Form::label('l_book_value', 'เบิกให้กับ', ['class' => 'col-sm-6 col-form-label']) !!}
+            <input type="text" class="form-control" id="requester" >
     </div>
   </div>
 

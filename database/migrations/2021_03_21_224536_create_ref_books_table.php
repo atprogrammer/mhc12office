@@ -15,7 +15,9 @@ class CreateRefBooksTable extends Migration
     {
         Schema::create('ref_books', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('user_id')->nullable(); //จัดเก็บ ID ผู้ขอเบิก(user)
+            $table->string('objective', 255)->nullable(); //จัดเก็บขอรับการสนับสนุนสื่อต่างๆเพื่อใช้ทำอะไร
+            $table->string('requester', 100)->nullable(); //จัดเก็บเบิกให้กับ
             $table->timestamps();
         });
     }
