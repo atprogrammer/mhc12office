@@ -82,14 +82,14 @@ class BookStoresController extends Controller
             $full_path_doc = null;
         }
 
-        $book_date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->book_date);
-        $book = new BookAdd();
-        $book->book_id = $request->book_id;
-        $book->book_date = $book_date;
-        $book->book_volume = $request->book_volume;
-        $book->book_file = $full_path_doc;
-        $book->save();
-        return redirect()->route('bookstores.index')->with('status', 'บันทึกข้อมูลเรียบร้อย');
+            $book_date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->book_date);
+            $book = new BookAdd();
+            $book->book_id = $request->book_id;
+            $book->book_date = $book_date;
+            $book->book_volume = $request->book_volume;
+            $book->book_file = $full_path_doc;
+            $book->save();
+            return redirect()->route('bookstores.index')->with('status', 'บันทึกข้อมูลเรียบร้อย');
 
     }
 
