@@ -64,15 +64,29 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
+      @if ($errors->has('objective'))
+      <span class="text-danger">* {{ $errors->first('objective') }}</span>
+      @endif
             {!! Form::label('l_book_value', 'ขอรับการสนับสนุนสื่อต่างๆเพื่อใช้', ['class' => 'col-sm-6 col-form-label']) !!}
-            <input type="text" class="form-control" id="objective" >
+ 
+            {!! Form::text('objective',null,["class"=>"form-control",'placeholder'=>'']) !!}
     </div>
+    <div class="form-group col-md-6">
+      @if ($errors->has('in_person'))
+      <span class="text-danger">* {{ $errors->first('in_person') }}</span>
+      @endif
+      {!! Form::label('inputPassword4', 'เบิกให้กับ', ['class' => 'col-sm-12 col-form-label']) !!} 
+      {!! Form::select('in_person', ['ตัวเอง' => 'ตัวเอง', 'บุคคลภายนอก' => 'บุคคลภายนอก'], null,['class' => 'form-control','placeholder' => 'กรุณาเลือก...','id' => 'target']) !!} 
+  </div>
   </div>
 
-  <div class="form-row">
+  <div class="form-row" id="requester">
     <div class="form-group col-md-6">
+      @if ($errors->has('requester'))
+      <span class="text-danger">* {{ $errors->first('requester') }}</span>
+      @endif
             {!! Form::label('l_book_value', 'เบิกให้กับ', ['class' => 'col-sm-6 col-form-label']) !!}
-            <input type="text" class="form-control" id="requester" >
+            <input type="text" class="form-control" id="requester" name="requester" >
     </div>
   </div>
 
@@ -101,7 +115,7 @@
             </td>
             <td>{{$book->name_book}}</td>
             <input type="hidden" id="custId" name="addmore[{{$i}}][volume_book]" value="{{$book->volume_book}}">
-            <input type="hidden" id="custId" name="addmore[{{$i}}][book_id]" value="{{$book->volume_book}}">
+            <input type="hidden" id="custId" name="addmore[{{$i}}][book_id]" value="{{$book->book_id}}">
             <td>{{$book->volume_book}}</td>
             <td>
               <a href="{{ route('bookstores.action_book_destroy',[$book->id,Auth::user()->id])}}" class="btn btn-danger" > <i class="far fa-trash-alt"></i> ลบข้อมูล</a>
@@ -155,8 +169,21 @@
               }
               
             });
-
-
+            
+           <?php if($errors->has('requester')){ ?>
+            $("#requester").show(); //ซ่อนช่องกรอกชื่อบุคลากรไว้ก่อน
+           <?php }else{ ?>
+            $("#requester").hide(); //ซ่อนช่องกรอกชื่อบุคลากรไว้ก่อน
+           <?php } ?>
+            $( "#target" ).change(function() {
+              var data = $(this).val();
+              //alert(data);
+              if(data=="บุคคลภายนอก"){
+                $("#requester").show(); //แสดงช่องกรอกชื่อบุคลากร
+              }else{
+                $("#requester").hide();
+              }
+            });
             
        
 </script>

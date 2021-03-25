@@ -5,10 +5,10 @@ namespace App\Http\Controllers\BookStores;
 use App\Http\Controllers\Controller;
 use App\Models\BookAdd;
 use App\Models\BookBook; //ใช้ Query มือ
+use App\Models\BookOut; //เรียก Model
 use App\Models\BookStore; //เรียก Model
 use App\Models\RefBook; //เรียก Model
 use App\Models\Risk; //เรียก Model
-use App\Models\Test; //เรียก Model
 use Illuminate\Http\Request; //เรียก Model
 
 use Illuminate\Support\Facades\DB;
@@ -82,14 +82,14 @@ class BookStoresController extends Controller
             $full_path_doc = null;
         }
 
-        $book_date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->book_date);
-        $book = new BookAdd();
-        $book->book_id = $request->book_id;
-        $book->book_date = $book_date;
-        $book->book_volume = $request->book_volume;
-        $book->book_file = $full_path_doc;
-        $book->save();
-        return redirect()->route('bookstores.index')->with('status', 'บันทึกข้อมูลเรียบร้อย');
+            $book_date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->book_date);
+            $book = new BookAdd();
+            $book->book_id = $request->book_id;
+            $book->book_date = $book_date;
+            $book->book_volume = $request->book_volume;
+            $book->book_file = $full_path_doc;
+            $book->save();
+            return redirect()->route('bookstores.index')->with('status', 'บันทึกข้อมูลเรียบร้อย');
 
     }
 
@@ -98,18 +98,18 @@ class BookStoresController extends Controller
         if ($name != "") {
             //$books = DB::table('book_stores')->where('name_book', 'like', '%'.$name.'%')->paginate(15);
             $books = DB::table('book_stores')
-                ->select('book_stores.*', 'book_adds.*', 'book_books.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
+                ->select('book_stores.*', 'book_adds.*', 'book_outs.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
                 ->leftJoin(DB::raw('(SELECT book_id, SUM(book_volume) as book_volume
-         FROM book_adds GROUP BY book_id)
-         book_adds'),
+      FROM book_adds GROUP BY book_id)
+      book_adds'),
                     function ($join) {
                         $join->on('book_stores.id', '=', 'book_adds.book_id');
                     })
                 ->leftJoin(DB::raw('(SELECT book_id as test_book_id, SUM(volume_book) as sum_test_book
-         FROM book_books GROUP BY book_id)
-         book_books'),
+      FROM book_outs GROUP BY book_id)
+      book_outs'),
                     function ($join) {
-                        $join->on('book_stores.id', '=', 'book_books.test_book_id');
+                        $join->on('book_stores.id', '=', 'book_outs.test_book_id');
                     })
                 ->where('name_book', 'like', '%' . $name . '%')
                 ->paginate(15);
@@ -205,18 +205,18 @@ class BookStoresController extends Controller
             //$books = DB::table('book_stores')->where('name_book', 'like', '%'.$name.'%')->paginate(15);
 
             $books = DB::table('book_stores')
-                ->select('book_stores.*', 'book_adds.*', 'book_books.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
+                ->select('book_stores.*', 'book_adds.*', 'book_outs.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
                 ->leftJoin(DB::raw('(SELECT book_id, SUM(book_volume) as book_volume
-         FROM book_adds GROUP BY book_id)
-         book_adds'),
+      FROM book_adds GROUP BY book_id)
+      book_adds'),
                     function ($join) {
                         $join->on('book_stores.id', '=', 'book_adds.book_id');
                     })
                 ->leftJoin(DB::raw('(SELECT book_id as test_book_id, SUM(volume_book) as sum_test_book
-         FROM book_books GROUP BY book_id)
-         book_books'),
+      FROM book_outs GROUP BY book_id)
+      book_outs'),
                     function ($join) {
-                        $join->on('book_stores.id', '=', 'book_books.test_book_id');
+                        $join->on('book_stores.id', '=', 'book_outs.test_book_id');
                     })
                 ->where('name_book', 'like', '%' . $name . '%')
                 ->paginate(15);
@@ -260,7 +260,6 @@ class BookStoresController extends Controller
             'books' => $books,
         ]);
 
-
         //echo $customers = DB::table('book_books')->where('user_id', $user_id)->count();
 
     }
@@ -273,7 +272,7 @@ class BookStoresController extends Controller
             ->leftJoin('book_books', 'book_stores.id', '=', 'book_books.book_id')
             ->where('user_id', $user_id)
             ->get();
-         //$books = DB::table('book_books')->where('user_id', $user_id)->get();
+        //$books = DB::table('book_books')->where('user_id', $user_id)->get();
         return view('book_stores.action_create', [
             'books' => $books,
         ]);
@@ -282,9 +281,38 @@ class BookStoresController extends Controller
 
     public function action_book_store(Request $request)
     {
+        //ตรวจสอบข้อมูล
+        if ($request->in_person == 'ตัวเอง' || $request->in_person == null) {
+            $request->validate([
+                'in_person' => 'required',
+                'addmore' => 'required',
+                'objective' => 'required',
+            ],
+                [
+                    'objective.required' => 'กรุณากรอกข้อมูลขอรับการสนับเพื่อใช้ทำอะไร',
+                    'in_person.required' => 'กรุณากรอกข้อมูลเบิกให้กับใคร',
+                    'addmore.required' => 'คุณยังไม่มีรายการเบิก',
+                ]);
+        } else {
+            $request->validate([
+                'in_person' => 'required',
+                'addmore' => 'required',
+                'objective' => 'required',
+                'requester' => 'required',
+            ],
+                [
+                    'objective.required' => 'กรุณากรอกข้อมูลขอรับการสนับเพื่อใช้ทำอะไร',
+                    'in_person.required' => 'กรุณากรอกข้อมูลเบิกให้กับใคร',
+                    'requester.required' => 'กรุณากรอกข้อมูลบุคคลภายนอกที่ขอรับสื่อ',
+                    'addmore.required' => 'คุณยังไม่มีรายการเบิก',
+                ]);
+        }
 
         $post = new RefBook();
         $post->user_id = $request->user_id;
+        $post->in_person = $request->in_person;
+        $post->objective = $request->objective;
+        $post->requester = $request->requester;
         $post->save();
         $last_id = $post->id; //ดึงค่า ID ล่าสุด
 
@@ -292,7 +320,7 @@ class BookStoresController extends Controller
         $data = $input['addmore'];
 
         foreach ($data as $value) {
-            $post = new Test();
+            $post = new BookOut();
             $post->ref_id = $last_id;
             $post->book_id = $value['book_id'];
             $post->volume_book = $value['volume_book'];
@@ -302,13 +330,14 @@ class BookStoresController extends Controller
         DB::table('book_books')->where('user_id', '=', $request->user_id)->delete();
         dd('Post created successfully.');
 
+        //dd($request);
 
     }
 
     public function get_book_3table()
     {
         $books = DB::table('book_stores')
-            ->select('book_stores.*', 'book_adds.*', 'book_books.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
+            ->select('book_stores.*', 'book_adds.*', 'book_outs.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
             ->leftJoin(DB::raw('(SELECT book_id, SUM(book_volume) as book_volume
       FROM book_adds GROUP BY book_id)
       book_adds'),
@@ -316,10 +345,10 @@ class BookStoresController extends Controller
                     $join->on('book_stores.id', '=', 'book_adds.book_id');
                 })
             ->leftJoin(DB::raw('(SELECT book_id as test_book_id, SUM(volume_book) as sum_test_book
-      FROM book_books GROUP BY book_id)
-      book_books'),
+      FROM book_outs GROUP BY book_id)
+      book_outs'),
                 function ($join) {
-                    $join->on('book_stores.id', '=', 'book_books.test_book_id');
+                    $join->on('book_stores.id', '=', 'book_outs.test_book_id');
                 })
             ->paginate(15);
 
