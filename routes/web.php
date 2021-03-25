@@ -33,7 +33,6 @@ Route::get('/bookstores/form/action/{id}', [App\Http\Controllers\BookStores\Book
 Route::get('/bookstores/form/destroy/action/{id}/{id2}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_destroy'])->name('bookstores.action_book_destroy');
 Route::get('/bookstores/pdftest', [App\Http\Controllers\PDFController::class, 'pdf'])->name('bookstores.pdf');
 //RiskController//
-//at
 Route::get('/risk', [App\Http\Controllers\risk\RiskController::class, 'index'])->name('risk.index');
 Route::get('/risk/create', [App\Http\Controllers\risk\RiskController::class, 'create'])->name('risk.create'); //เรียกหน้าฟอร์มบันทึกข้อมูลความเสี่ยง
 Route::post('/risk/store', [App\Http\Controllers\risk\RiskController::class, 'store'])->name('risk.store'); 
