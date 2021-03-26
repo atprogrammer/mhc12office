@@ -65,9 +65,9 @@ $("#search_name_btn").click(function() {
     var data = $( "#search_name" ).val();
     if(data==""){
       //swal({ title: 'ข้อผิดพลาด', text: 'ยังไม่ได้พิมพ์ค้นหา' });
-      window.location.href = '/bookstores/action'+'/'+data;
+      window.location.href = '{{ route('bookstores.action') }}'+'/'+data;
     }else{
-       window.location.href = '/bookstores/action'+'/'+data;
+       window.location.href = '{{ route('bookstores.action') }}'+'/'+data;
     }
     
   });
@@ -89,7 +89,7 @@ Swal.fire({
       Swal.fire('ต้องมีค่ามากกว่า 0')     
     }else{
     //Swal.fire(amount + unit)
-    window.location.href = '/bookstores/action_book'+'/'+amount+'/'+id+'/'+user_id;
+    window.location.href = '{{ route('bookstores.action_book') }}'+'/'+amount+'/'+id+'/'+user_id;
     }
   }
 })

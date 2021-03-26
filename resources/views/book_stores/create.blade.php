@@ -276,9 +276,9 @@
               var data = $( "#search_name" ).val();
               if(data==""){
                 swal({ title: 'ข้อผิดพลาด', text: 'ยังไม่ได้พิมพ์ค้นหา' });
-                window.location.href = '/bookstores/search'+'/'+data;
+                window.location.href = '{{ route('bookstores.search') }}'+'/'+data;
               }else{
-                 window.location.href = '/bookstores/search'+'/'+data;
+                 window.location.href = '{{ route('bookstores.search') }}'+'/'+data;
               }
               
             });

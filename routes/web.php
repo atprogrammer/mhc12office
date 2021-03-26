@@ -27,7 +27,7 @@ Route::get('/bookstores/search/{id?}', [App\Http\Controllers\BookStores\BookStor
 Route::post('/bookstores/store', [App\Http\Controllers\BookStores\BookStoresController::class, 'store'])->name('bookstores.store');
 Route::post('/bookstores/store_old', [App\Http\Controllers\BookStores\BookStoresController::class, 'store_old'])->name('bookstores.store_old');
 Route::get('/bookstores/action/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_index'])->name('bookstores.action');
-Route::get('/bookstores/action_book/{id}/{id2}/{id3}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book'])->name('bookstores.action_book');
+Route::get('/bookstores/action_book/{id?}/{id2?}/{id3?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book'])->name('bookstores.action_book');
 Route::post('/bookstores/action/store', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_store'])->name('bookstores.action_book_store');
 Route::get('/bookstores/form/action/{id}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_form'])->name('bookstores.action_book_form');
 Route::get('/bookstores/form/destroy/action/{id}/{id2}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_destroy'])->name('bookstores.action_book_destroy');
