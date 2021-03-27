@@ -118,7 +118,7 @@
             <input type="hidden" id="custId" name="addmore[{{$i}}][book_id]" value="{{$book->book_id}}">
             <td>{{$book->volume_book}}</td>
             <td>
-              <a href="{{ route('bookstores.action_book_destroy',[$book->id,Auth::user()->id])}}" class="btn btn-danger" > <i class="far fa-trash-alt"></i> ลบข้อมูล</a>
+              <a onClick="del({{$book->id}},{{Auth::user()->id}})" class="btn btn-danger" > <i class="far fa-trash-alt"></i> ลบข้อมูล</a>
 
             </td>
           </tr>
@@ -136,6 +136,20 @@
 </div>
 
 <script>
+
+        function del(id,user){
+          Swal.fire({
+          title: 'คุณต้องการลบข้อมูลนี้ใช่หรือไม่ ?',
+          showCancelButton: true,
+          confirmButtonText: `ยืนยัน`,
+          }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '{{ route('bookstores.action_book_destroy') }}'+'/'+id+'/'+user;
+          } 
+        })
+        }
+
+              
     $('#datepicker').datepicker({
             locale: 'th-TH',
             uiLibrary: 'bootstrap4',

@@ -30,7 +30,7 @@ Route::get('/bookstores/action/{id?}', [App\Http\Controllers\BookStores\BookStor
 Route::get('/bookstores/action_book/{id?}/{id2?}/{id3?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book'])->name('bookstores.action_book');
 Route::post('/bookstores/action/store', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_store'])->name('bookstores.action_book_store');
 Route::get('/bookstores/form/action/{id}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_form'])->name('bookstores.action_book_form');
-Route::get('/bookstores/form/destroy/action/{id}/{id2}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_destroy'])->name('bookstores.action_book_destroy');
+Route::get('/bookstores/form/destroy/action/{id?}/{id2?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_destroy'])->name('bookstores.action_book_destroy');
 Route::get('/bookstores/pdftest', [App\Http\Controllers\PDFController::class, 'pdf'])->name('bookstores.pdf');
 //RiskController//
 Route::get('/risk', [App\Http\Controllers\risk\RiskController::class, 'index'])->name('risk.index');
