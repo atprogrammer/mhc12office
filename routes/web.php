@@ -23,6 +23,8 @@ Route::get('/bookstores', [App\Http\Controllers\BookStores\BookStoresController:
 Route::get('/bookstores/create', [App\Http\Controllers\BookStores\BookStoresController::class, 'add'])->name('bookstores.create');
 Route::get('/bookstores/create/old', [App\Http\Controllers\BookStores\BookStoresController::class, 'search_old'])->name('search_old.create');
 Route::get('/bookstores/create/old/{id}', [App\Http\Controllers\BookStores\BookStoresController::class, 'add_old'])->name('bookstores.add_old');
+Route::get('/bookstores/edit/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'edit'])->name('bookstores.edit');
+Route::post('/bookstores/update', [App\Http\Controllers\BookStores\BookStoresController::class, 'update_stores'])->name('bookstores.update_stores');
 Route::get('/bookstores/search/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'search_name'])->name('bookstores.search');
 Route::post('/bookstores/store', [App\Http\Controllers\BookStores\BookStoresController::class, 'store'])->name('bookstores.store');
 Route::post('/bookstores/store_old', [App\Http\Controllers\BookStores\BookStoresController::class, 'store_old'])->name('bookstores.store_old');

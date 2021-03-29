@@ -71,7 +71,7 @@
     @if ($errors->has('book_type'))
     <span class="text-danger">* {{ $errors->first('book_type') }}</span>
     @endif
-    {!! Form::select('book_type', ['คู่มือ' => 'คู่มือ', 'แผ่นพับ' => 'แผ่นพับ', 'แบบประเมิน' => 'แบบประเมิน'], null,['class' => 'form-control','placeholder' => 'กรุณาเลือก...','id' => 'target']) !!} 
+    {!! Form::select('book_type', ['คู่มือ' => 'คู่มือ', 'แผ่นพับ' => 'แผ่นพับ', 'แบบประเมิน' => 'แบบประเมิน','โปสเตอร์'=>'โปสเตอร์','CD'=>'CD'], null,['class' => 'form-control','placeholder' => 'กรุณาเลือก...','id' => 'target']) !!} 
 </div>
 </div>
 @endif

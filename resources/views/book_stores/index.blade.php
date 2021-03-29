@@ -35,7 +35,7 @@
                     <button type="button" class="btn btn-secondary">ไม่มีรายละเอียด</button>
                     @endif
                 <td><a href="#" class="btn btn-warning">@if($book->total!=null){{$book->total}}@else{{$book->book_volume}}@endif </a></td>
-            <td> <a href="{{route('risk.edit',$book->id)}}" class="btn btn-success"><i class="far fa-edit"></i> แก้ไข</a></td>
+            <td> <a href="{{route('bookstores.edit',$book->id)}}" class="btn btn-success"><i class="far fa-edit"></i> แก้ไข</a></td>
                 <td> 
                     <form action="{{route('risk.destroy',$book->id)}}" method="post">
                       @csrf @method('DELETE')

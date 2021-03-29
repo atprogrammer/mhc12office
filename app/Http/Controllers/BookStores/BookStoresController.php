@@ -198,6 +198,25 @@ class BookStoresController extends Controller
 
     }
 
+    public function edit($id){
+
+        $books = DB::table('book_stores')->where('id', $id)->get();
+
+        $book_add = DB::table('book_adds')->where('book_id', $id)->get();
+       
+        return view('book_stores.update', [
+            'books' => $books,
+            'book_add' => $book_add,
+        ]);
+
+    }
+
+    public function update_stores(Request $request){
+
+        dd($request);
+
+    }
+
     public function action_index($name = null)
     {
 
