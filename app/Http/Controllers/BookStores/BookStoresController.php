@@ -198,12 +198,13 @@ class BookStoresController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $books = DB::table('book_stores')->where('id', $id)->get();
 
         $book_add = DB::table('book_adds')->where('book_id', $id)->get();
-       
+
         return view('book_stores.update', [
             'books' => $books,
             'book_add' => $book_add,
@@ -211,7 +212,8 @@ class BookStoresController extends Controller
 
     }
 
-    public function update_stores(Request $request){
+    public function update_stores(Request $request)
+    {
 
         dd($request);
 
@@ -351,6 +353,20 @@ class BookStoresController extends Controller
 
         //dd($request);
 
+    }
+
+    public function old_order()
+    {
+        
+     
+        $users = DB::table('ref_books')
+        ->leftJoin('book_outs', 'book_outs.ref_id', '=', 'ref_books.id')
+        ->leftJoin('book_stores','book_stores.id','=','book_outs.book_id')
+        ->select('book_stores.name_book','book_outs.volume_book')
+        //->where(['questions.question_schedul'=>$dropselected,'ssi_tracks.track_first_status'=>0])
+        ->get();
+        dd($users); 
+        //return view('book_stores.old_order');
     }
 
     public function get_book_3table()
