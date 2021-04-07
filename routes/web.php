@@ -31,7 +31,7 @@ Route::post('/bookstores/store_old', [App\Http\Controllers\BookStores\BookStores
 Route::get('/bookstores/action/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_index'])->name('bookstores.action');
 Route::get('/bookstores/action_book/{id?}/{id2?}/{id3?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book'])->name('bookstores.action_book');
 Route::post('/bookstores/action/store', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_store'])->name('bookstores.action_book_store');
-Route::get('/bookstores/form/action/{id}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_form'])->name('bookstores.action_book_form');
+Route::get('/bookstores/form/action', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_form'])->name('bookstores.action_book_form');
 Route::get('/bookstores/form/destroy/action/{id?}/{id2?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'action_book_destroy'])->name('bookstores.action_book_destroy');
 Route::get('/bookstores/pdftest', [App\Http\Controllers\PDFController::class, 'pdf'])->name('bookstores.pdf');
 Route::get('/bookstores/old_order/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'old_order'])->name('bookstores.old_order');

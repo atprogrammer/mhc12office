@@ -331,7 +331,7 @@
                 </a>
               </li>
               <li class="nav-item"> 
-                <a href="{{ route('bookstores.old_order',['id'=>Auth::user()->id])}}" class="{{ Request::is('bookstores/old_order*') ? 'nav-link active' : 'nav-link' }}">
+                <a href="{{ route('bookstores.old_order')}}" class="{{ Request::is('bookstores/old_order*') ? 'nav-link active' : 'nav-link' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ประวัติการเบิก</p>
                 </a>

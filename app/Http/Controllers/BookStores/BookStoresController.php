@@ -10,6 +10,7 @@ use App\Models\BookStore; //เรียก Model
 use App\Models\RefBook; //เรียก Model
 use App\Models\Risk; //เรียก Model
 use Illuminate\Http\Request; //เรียก Model
+use Illuminate\Support\Facades\Auth; //เรียกใช้ session การ login ของ User
 
 use Illuminate\Support\Facades\DB;
 
@@ -265,18 +266,16 @@ class BookStoresController extends Controller
         $book->volume_book = $amount;
         $book->save();
         $last_id = $book->id; //ดึงค่า ID ล่าสุด
-        return redirect()->route('bookstores.action_book_form', $user_id);
-
+        return redirect()->route('bookstores.action_book_form');
+        //return redirect()->route('bookstores.action_book_form', $user_id); //แบบส่งค่าไปด้วย
     }
 
-    public function action_book_form($user_id)
+    public function action_book_form()
     {
-        //echo  $last_id;
         $books = DB::table('book_stores')
             ->leftJoin('book_books', 'book_stores.id', '=', 'book_books.book_id')
-            ->where('user_id', $user_id)
+            ->where('user_id', Auth::user()->id)
             ->get();
-        //$books = DB::table('book_stores')->where('user_id', $user_id)->get();
         return view('book_stores.action_create', [
             'books' => $books,
         ]);
@@ -294,9 +293,7 @@ class BookStoresController extends Controller
             ->where('user_id', $user_id)
             ->get();
         //$books = DB::table('book_books')->where('user_id', $user_id)->get();
-        return view('book_stores.action_create', [
-            'books' => $books,
-        ]);
+        return redirect()->route('bookstores.action_book_form');//กลับหน้าเดิม
 
     }
 
@@ -355,7 +352,7 @@ class BookStoresController extends Controller
 
     }
 
-    public function old_order($user_id)
+    public function old_order()
     {
         //ไว้ใช้งาน
         // $users = DB::table('ref_books')
@@ -364,24 +361,25 @@ class BookStoresController extends Controller
         // ->select('book_stores.name_book','book_outs.volume_book','ref_books.in_person')
         // //->where(['questions.question_schedul'=>$dropselected,'ssi_tracks.track_first_status'=>0])
         // ->get();
-        // dd($users); 
+        // dd($users);
 
         $books = DB::table('ref_books')
-        ->select('ref_books.*', 'book_outs.*')
-        ->leftJoin(DB::raw('(SELECT ref_id, SUM(volume_book) as volume_book
+            ->select('ref_books.*', 'book_outs.*')
+            ->leftJoin(DB::raw('(SELECT ref_id, SUM(volume_book) as volume_book
   FROM book_outs GROUP BY ref_id)
   book_outs'),
-            function ($join) {
-                $join->on('ref_books.id', '=', 'book_outs.ref_id');
-            })
-        ->where('user_id',$user_id)
-        ->paginate(15);
+                function ($join) {
+                    $join->on('ref_books.id', '=', 'book_outs.ref_id');
+                })
+            ->where('user_id', Auth::user()->id)
+            ->paginate(15);
 
         return view('book_stores.old_order', [
             'books' => $books,
         ]);
-       
+
     }
+
 
     public function get_book_3table()
     {

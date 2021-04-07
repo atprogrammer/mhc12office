@@ -20,10 +20,10 @@
           <?php $i=$books->perPage()*($books->currentPage()-1);?>
             @foreach ($books as $book)
             <tr><th scope="row"><?php $i++;?>{{$i}}</th>
-                <th scope="row">{{date('d/m/Y', strtotime($book->created_at))}}</th>
+                <th scope="row"> <a href="#"> {{date('d/m/Y', strtotime($book->created_at))}}</a></th>
                 <th scope="row">{{$book->in_person}}</th>
                 <td>{{$book->volume_book}}</td>
-                <td><a href="#" class="btn btn-warning">รอการอนุมัติ</a></td>
+                <td><a class="btn btn-warning">รอการอนุมัติ</a></td>
                 <td>   <a onClick="del({{$book->id}},{{Auth::user()->id}})" class="btn btn-danger" > <i class="far fa-trash-alt"></i> ยกเลิกการเบิก</a></td>
             </tr>
             @endforeach
