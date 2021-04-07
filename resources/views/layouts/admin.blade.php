@@ -311,15 +311,37 @@
                   <p>รายการสื่อสิ่งพิมพ์</p>
                 </a>
               </li>
+              
+            </ul>
+          </li>
+
+          <li class="{{ Request::is('bookstores*') ? 'nav-item has-treeview menu-open' : 'nav-item has-treeview menu-close' }}">
+            <a href="#" class="nav-link active bg-warning">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                ระบบเบิกสื่อฯ
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('bookstores.action') }}" class="nav-link">
+                <a href="{{ route('bookstores.action') }}" class="{{ Request::is('bookstores/action') ? 'nav-link active' : 'nav-link' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>เบิกสื่อสิ่งพิมพ์</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('bookstores.action') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ประวัติการเบิก</p>
+                </a>
+              </li>
+
+              
     
             </ul>
           </li>
+
 
          
           <li class="nav-header">ระบบอื่นๆ</li>
