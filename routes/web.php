@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 //BookStores//
-Route::get('/bookstores', [App\Http\Controllers\BookStores\BookStoresController::class, 'index'])->name('bookstores.index');
+Route::get('/bookstores/add/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'index'])->name('bookstores.index');
 Route::get('/bookstores/create', [App\Http\Controllers\BookStores\BookStoresController::class, 'add'])->name('bookstores.create');
 Route::get('/bookstores/create/old', [App\Http\Controllers\BookStores\BookStoresController::class, 'search_old'])->name('search_old.create');
 Route::get('/bookstores/create/old/{id}', [App\Http\Controllers\BookStores\BookStoresController::class, 'add_old'])->name('bookstores.add_old');

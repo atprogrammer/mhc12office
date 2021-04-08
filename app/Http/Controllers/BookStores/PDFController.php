@@ -18,9 +18,11 @@ class PDFController extends Controller
         $books = DB::table('ref_books')
             ->leftJoin('book_outs', 'book_outs.ref_id', '=', 'ref_books.id')
             ->leftJoin('book_stores', 'book_stores.id', '=', 'book_outs.book_id')
-            ->select('book_stores.id', 'book_stores.name_book', 'book_outs.volume_book', 'ref_books.in_person')
+            ->select('book_stores.id', 'book_stores.name_book', 'book_outs.volume_book', 'ref_books.in_person', 'ref_books.objective')
             ->where('ref_books.id', $id)
             ->get();
+
+        
 
         $view = \View::make('book_stores.pdf.report_ref', [
             'books' => $books,
@@ -33,6 +35,6 @@ class PDFController extends Controller
         PDF::writeHTML($html_content, true, false, true, false, '');
         PDF::Output('userlist.pdf');
 
-        //dd($books);
+        //dd($books[0]->name_book);
     }
 }

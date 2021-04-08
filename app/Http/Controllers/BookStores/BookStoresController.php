@@ -19,10 +19,35 @@ use Illuminate\Support\Facades\DB;
 class BookStoresController extends Controller
 {
 
-    public function index()
+    public function index($name = null)
     {
+        if ($name != "") {
+            $books = DB::table('book_stores')
+                ->select('book_stores.*', 'book_adds.*', 'book_outs.*', (DB::raw('(SELECT (book_volume-sum_test_book)) as total')))
+                ->leftJoin(DB::raw('(SELECT book_id, SUM(book_volume) as book_volume
+      FROM book_adds GROUP BY book_id)
+      book_adds'),
+                    function ($join) {
+                        $join->on('book_stores.id', '=', 'book_adds.book_id');
+                    })
+                ->leftJoin(DB::raw('(SELECT book_id as test_book_id, SUM(volume_book) as sum_test_book
+      FROM book_outs GROUP BY book_id)
+      book_outs'),
+                    function ($join) {
+                        $join->on('book_stores.id', '=', 'book_outs.test_book_id');
+                    })
+                ->where('name_book', 'like', '%' . $name . '%')
+                ->paginate(15);
 
-        $books = $this->get_book_3table();
+            //$books =BookStore::Where('name_book', 'like', '%'.$name.'%')->paginate(15);
+        } else {
+            //$books=BookStore::paginate(5); //แบ่งหน้า
+
+            $books = $this->get_book_3table();
+
+        }
+
+        //$books = $this->get_book_3table();
         return view('book_stores.index', [
             'books' => $books,
         ]);
@@ -293,7 +318,7 @@ class BookStoresController extends Controller
             ->where('user_id', $user_id)
             ->get();
         //$books = DB::table('book_books')->where('user_id', $user_id)->get();
-        return redirect()->route('bookstores.action_book_form');//กลับหน้าเดิม
+        return redirect()->route('bookstores.action_book_form'); //กลับหน้าเดิม
 
     }
 
@@ -346,9 +371,7 @@ class BookStoresController extends Controller
         }
 
         DB::table('book_books')->where('user_id', '=', $request->user_id)->delete();
-        dd('Post created successfully.');
-
-        //dd($request);
+        return redirect()->route('bookstores.old_order')->with('status', 'บันทึกรายการเบิกเรียบร้อย');
 
     }
 
@@ -379,7 +402,6 @@ class BookStoresController extends Controller
         ]);
 
     }
-
 
     public function get_book_3table()
     {
