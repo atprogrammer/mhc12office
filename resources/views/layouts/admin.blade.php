@@ -306,7 +306,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('bookstores.index') }}"  class="{{ Request::is('bookstores') ? 'nav-link active' : 'nav-link' }}" >
+                <a href="{{ route('bookstores.index') }}"  class="{{ Request::is('bookstores/add*') ? 'nav-link active' : 'nav-link' }}" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>รายการสื่อสิ่งพิมพ์</p>
                 </a>

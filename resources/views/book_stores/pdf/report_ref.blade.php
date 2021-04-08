@@ -53,7 +53,7 @@
      <tr>
        <td></td>
        <td ></td>
-       <td align="center">(นายกนกศักดิ์ ศักดิ์คำแหง)</td>
+       <td align="center">( {{Auth::user()->name}} )</td>
      </tr>
      <tr>
       <td></td>

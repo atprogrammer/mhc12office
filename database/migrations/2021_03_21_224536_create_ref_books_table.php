@@ -19,6 +19,10 @@ class CreateRefBooksTable extends Migration
             $table->string('in_person', 50)->nullable(); //จัดเก็บเบิกให้กับ
             $table->string('objective', 255)->nullable(); //จัดเก็บขอรับการสนับสนุนสื่อต่างๆเพื่อใช้ทำอะไร
             $table->string('requester', 100)->nullable(); //จัดเก็บเบิกให้กับ
+            $table->bigInteger('st1')->nullable(); //จัดเก็บ สถานะ
+            $table->bigInteger('st2')->nullable(); //จัดเก็บ สถานะ
+            $table->bigInteger('st3')->nullable(); //จัดเก็บ สถานะ
+            $table->bigInteger('st4')->nullable(); //จัดเก็บ สถานะ
             $table->timestamps();
         });
     }
