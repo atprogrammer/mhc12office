@@ -37,11 +37,18 @@ Route::get('/bookstores/pdftest', [App\Http\Controllers\PDFController::class, 'p
 Route::get('/bookstores/report/ref/{id?}', [App\Http\Controllers\BookStores\PDFController::class, 'pdf'])->name('report.ref');
 Route::get('/bookstores/old_order/{id?}', [App\Http\Controllers\BookStores\BookStoresController::class, 'old_order'])->name('bookstores.old_order');
 //RiskController//
-Route::get('/risk', [App\Http\Controllers\risk\RiskController::class, 'index'])->name('risk.index');
-Route::get('/risk/create', [App\Http\Controllers\risk\RiskController::class, 'create'])->name('risk.create'); //เรียกหน้าฟอร์มบันทึกข้อมูลความเสี่ยง
-Route::post('/risk/store', [App\Http\Controllers\risk\RiskController::class, 'store'])->name('risk.store'); 
-Route::get('/risk/edit/{id}', [App\Http\Controllers\risk\RiskController::class, 'edit'])->name('risk.edit'); //เรียกหน้าฟอร์มบันทึกข้อมูลความเสี่ยง
-Route::get('/risk/destroy', [App\Http\Controllers\risk\RiskController::class, 'destroy'])->name('risk.destroy'); 
+Route::get('/risk', [App\Http\Controllers\Risk\RiskController::class, 'index'])->name('risk.index');
+Route::get('/risk/create', [App\Http\Controllers\Risk\RiskController::class, 'create'])->name('risk.create'); //เรียกหน้าฟอร์มบันทึกข้อมูลความเสี่ยง
+Route::post('/risk/store', [App\Http\Controllers\Risk\RiskController::class, 'store'])->name('risk.store'); 
+Route::get('/risk/edit/{id}', [App\Http\Controllers\Risk\RiskController::class, 'edit'])->name('risk.edit'); //เรียกหน้าฟอร์มบันทึกข้อมูลความเสี่ยง
+Route::get('/risk/destroy', [App\Http\Controllers\Risk\RiskController::class, 'destroy'])->name('risk.destroy'); 
+
+//LeaveController//
+Route::get('/leave', [App\Http\Controllers\Leave\LeaveController::class, 'index'])->name('leave.index');
+Route::post('/leave/create',[App\Http\Controllers\Leave\LeaveController::class,'create'])->name('leave.create');
+Route::post('/leave/update',[App\Http\Controllers\Leave\LeaveController::class,'update']);
+Route::post('/leave/delete',[App\Http\Controllers\Leave\LeaveController::class,'destroy']);
+Route::post('/leave/add',[App\Http\Controllers\Leave\LeaveController::class, 'store'])->name('leave.store');
 
 Route::get('/logout', function(){
     Auth::logout();

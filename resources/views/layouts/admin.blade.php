@@ -186,7 +186,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-               <li class="nav-item has-treeview menu-close">
+               <li class="{{ Request::is('leave*') ? 'nav-item has-treeview menu-open' : 'nav-item has-treeview menu-close' }}">
                 <a href="#" class="nav-link active bg-success">
                   <i class="nav-icon fas fa-calendar-alt"></i>
                   <p>
@@ -196,7 +196,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ route('leave.index') }}" class="{{ Request::is('/leave*') ? 'nav-link active' : 'nav-link' }}" >
                       <i class="far fa-circle nav-icon"></i>
                       <p>ปฏิทินของฉัน</p>
                     </a>
