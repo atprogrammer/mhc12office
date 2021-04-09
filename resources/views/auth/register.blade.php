@@ -1,3 +1,9 @@
+<?php
+use Illuminate\Support\Facades\DB;
+//  $books =BookStore::Where('name_book', 'like', '%'.$name.'%')->paginate(15);
+ $positions = DB::table('positions')->get();
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -12,12 +18,31 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อ-สกุล') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="position" class="col-md-4 col-form-label text-md-right">{{ __('ตำแหน่ง') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="position" name="position">
+                                  <option value="" >กรุณาเลือกตำแหน่ง</option>
+                                  @foreach ($positions as $position)
+                                  <option value="{{$position->position_name}}" >{{$position->position_name}}</option>
+                                  @endforeach
+                                </select>
+
+                                @error('position')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
