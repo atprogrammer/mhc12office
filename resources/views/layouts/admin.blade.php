@@ -10,27 +10,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- fullcalendar-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" /> --}}
+  <link rel="stylesheet" href="{{asset('js/bootstrap.min.css')}}">
+
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
+  <script src="{{ asset('js/jquery.min.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
+
+  {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" /> --}}
+  <link rel="stylesheet" href="{{asset('js/fullcalendar.css')}}">
+
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script> --}}
+  <script src="{{ asset('js/moment.min.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
+
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script> --}}
+  <script src="{{ asset('js/fullcalendar.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
+  
+  {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
+  <script src="{{ asset('js/sweetalert2@10.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
 
   
   <!-- datepicker -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <script src="{{asset('datepicker/js/messages.th-TH.js')}}" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> <!-- sweetalert โหลดเพิ่ม-->
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
+    {{-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> --}}
+    <script src="{{ asset('js/gijgo.min.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
+
+    {{-- <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
+    <link rel="stylesheet" href="{{asset('js/gijgo.min.css')}}">
+
+    <script src="{{asset('datepicker/js/messages.th-TH.js')}}"></script>
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> --}}
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
+    
+    <!-- sweetalert โหลดเพิ่ม-->
     <script src="{{ asset('js/bonus.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
 
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
+  <link rel="stylesheet" href="{{asset('js/ionicons.min.css')}}">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
@@ -46,7 +66,8 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  {{-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="{{asset('js/ggfont.css')}}">
 
 
 </head>

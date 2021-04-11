@@ -42,14 +42,14 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <div class="form-group">
-                                    <label>วันที่ลา</label>
-                                    <input type="text" name="auther_name" id="auther_name" class="form-control"/>
+                                    {!! Form::label('lday', 'วันที่ลา', ['class' => 'col-sm-4 col-form-label']) !!} 
+                                    {!! Form::text('auther_name', \Carbon\Carbon::now()->format('d/m/Y'),['class' => 'form-control','id' => 'datepicker']) !!} 
                                 </div>  
                             </div>
                             <div class="form-group col-md-6">
                                 <div class="form-group">
-                                    <label>ถึงวันที่</label>
-                                    <input type="text" name="description" id="description" class="form-control"/>
+                                    {!! Form::label('lday', 'ถึงวันที่', ['class' => 'col-sm-4 col-form-label']) !!} 
+                                    {!! Form::text('description', \Carbon\Carbon::now()->format('d/m/Y'),['class' => 'form-control','id' => 'datepicker2']) !!} 
                                 </div>  
                             </div>
                         </div>  
@@ -109,7 +109,6 @@
                 select: function (start, end, allDay) {
                     var title = prompt('Event Title:');
                    
-     
                     if (title) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
@@ -187,7 +186,7 @@
                 });
                 $.ajax({
                             url: "{{route('leave.create')}}",
-                            data: 'title=' + $('#name').val() + '&start=' + $('#auther_name').val() + '&end=' + $('#description').val(),
+                            data: 'title=' + $('#name').val() + '&start=' + $('#datepicker').val() + '&end=' + $('#datepicker2').val(),
                             type: "POST",
                             success: function (data) {
                                 displayMessage("Added Successfully");
@@ -204,5 +203,20 @@
             });
         });
     </script>
+
+    
+<script>
+    $('#datepicker').datepicker({
+            locale: 'th-TH',
+            uiLibrary: 'bootstrap4',
+            format: 'dd/mm/yyyy'
+    });
+
+    $('#datepicker2').datepicker({
+            locale: 'th-TH',
+            uiLibrary: 'bootstrap4',
+            format: 'dd/mm/yyyy'
+    });
+</script>
 
 @endsection

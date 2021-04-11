@@ -30,9 +30,14 @@ class LeaveController extends Controller
 
     public function create(Request $request)
     {
+        $start = \Carbon\Carbon::createFromFormat('d/m/Y', $request->start)
+        ->format('Y-m-d'); //แปลงวันที่ลงฐานข้อมูล
+        $end = \Carbon\Carbon::createFromFormat('d/m/Y', $request->end)
+        ->format('Y-m-d'); //แปลงวันที่ลงฐานข้อมูล
+
         $insertArr = ['title' => $request->title,
-            'start' => $request->start,
-            'end' => $request->end,
+            'start' => $start,
+            'end' => $end,
         ];
         $event = LeaveDate::insert($insertArr);
         return Response::json($event);
@@ -40,13 +45,13 @@ class LeaveController extends Controller
     }
 
     public function update(Request $request)
-    {
+    {   
         $where = array('id' => $request->id);
-        $updateArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end];
-        $event = LeaveDate::where($where)->update($updateArr);
-
+        $updateArr = ['title' => $request->title,'start' => $request->start, 'end' => $request->end];
+        $event  = Event::where($where)->update($updateArr);
+ 
         return Response::json($event);
-    }
+    } 
 
     public function destroy(Request $request)
     {
