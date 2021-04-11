@@ -148,22 +148,32 @@
                                 }
                             });
                         },
-                eventClick: function (event) {
-                    var deleteMsg = confirm("Do you really want to delete?");
-                    if (deleteMsg) {
-                        $.ajax({
-                            type: "POST",
-                            url: SITEURL + '/leave/delete',
-                            data: "&id=" + event.id,
-                            success: function (response) {
-                                if(parseInt(response) > 0) {
-                                    $('#calendar').fullCalendar('removeEvents', event.id);
-                                    displayMessage("Deleted Successfully");
-                                }
-                            }
-                        });
-                    }
-                }
+                // eventClick: function (event) {
+                //     var deleteMsg = confirm("Do you really want to delete?");
+                //     if (deleteMsg) {
+                //         $.ajax({
+                //             type: "POST",
+                //             url: SITEURL + '/leave/delete',
+                //             data: "&id=" + event.id,
+                //             success: function (response) {
+                //                 if(parseInt(response) > 0) {
+                //                     $('#calendar').fullCalendar('removeEvents', event.id);
+                //                     displayMessage("Deleted Successfully");
+                //                 }
+                //             }
+                //         });
+                //     }
+                // },
+                ///////สร้าง pop up แสดงกิจกรรม//////
+                eventClick: function(event) {
+                    var start = $.fullCalendar.formatDate(event.start, "DD-MM-Y");
+                    var end = $.fullCalendar.formatDate(event.end, "DD-MM-Y");
+                //alert('กิจกรรม: ' + event.title);
+                Swal.fire('กิจกรรม',event.title+'\nวันที่ '+start+' ถึงวันที่ '+end)     
+               
+                  }
+
+
             });
         });
      
@@ -177,6 +187,7 @@
        //////////////////////// //modal//////////////////////
         $(document).ready(function(){
             //var SITEURL = "{{url('/')}}"; 
+            //var end = moment($('#datepicker2').val()).format('YYYY-MM-DD 12:00:00');//เพิ่มเวลา 12.00
             $('#formSubmit').click(function(e){
                 e.preventDefault();
                 $.ajaxSetup({
@@ -199,9 +210,13 @@
                             }
                         });
 
-           
             });
         });
+
+        
+
+
+        
     </script>
 
     

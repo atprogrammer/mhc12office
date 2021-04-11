@@ -33,7 +33,7 @@ class LeaveController extends Controller
         $start = \Carbon\Carbon::createFromFormat('d/m/Y', $request->start)
         ->format('Y-m-d'); //แปลงวันที่ลงฐานข้อมูล
         $end = \Carbon\Carbon::createFromFormat('d/m/Y', $request->end)
-        ->format('Y-m-d'); //แปลงวันที่ลงฐานข้อมูล
+        ->format('Y-m-d 12:00:00'); //แปลงวันที่ลงฐานข้อมูล (เพิ่ม 12 เพื่อสร้างเวลาข้ามวัน)
 
         $insertArr = ['title' => $request->title,
             'start' => $start,
