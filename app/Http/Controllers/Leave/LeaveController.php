@@ -20,7 +20,7 @@ class LeaveController extends Controller
             $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
 
             // $data = Event::where('id',10)->whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']); //เฉพาะ id
-            $data = LeaveDate::whereDate('start', '>=', $start)->whereDate('end', '<=', $end)->get(['id', 'title', 'start', 'end']);
+            $data = LeaveDate::whereDate('start', '>=', $start)->whereDate('end', '<=', $end)->get(['id', 'title', 'start', 'end','color']);
             return Response::json($data);
 
         }
@@ -35,7 +35,8 @@ class LeaveController extends Controller
         $end = \Carbon\Carbon::createFromFormat('d/m/Y', $request->end)
         ->format('Y-m-d 12:00:00'); //แปลงวันที่ลงฐานข้อมูล (เพิ่ม 12 เพื่อสร้างเวลาข้ามวัน)
 
-        $insertArr = ['title' => $request->title,
+        $insertArr = [
+            'title' => $request->title,
             'start' => $start,
             'end' => $end,
         ];
@@ -48,7 +49,7 @@ class LeaveController extends Controller
     {   
         $where = array('id' => $request->id);
         $updateArr = ['title' => $request->title,'start' => $request->start, 'end' => $request->end];
-        $event  = Event::where($where)->update($updateArr);
+        $event  = LeaveDate::where($where)->update($updateArr);
  
         return Response::json($event);
     } 

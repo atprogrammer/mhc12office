@@ -168,8 +168,16 @@
                 eventClick: function(event) {
                     var start = $.fullCalendar.formatDate(event.start, "DD-MM-Y");
                     var end = $.fullCalendar.formatDate(event.end, "DD-MM-Y");
-                //alert('กิจกรรม: ' + event.title);
-                Swal.fire('กิจกรรม',event.title+'\nวันที่ '+start+' ถึงวันที่ '+end)     
+                    
+                Swal.fire('กิจกรรม',event.title+'\nวันที่ '+start+' ถึงวันที่ '+end) 
+
+                // Swal.fire({
+                //         icon: 'success',
+                //         background: event.color,//ใส่สี backgroud
+                //         title: 'กิจกรรม',
+                //         text: event.title+'\nวันที่ '+start+' ถึงวันที่ '+end,
+                //         footer: '<a href>Why do I have this issue?</a>'
+                //         })    
                
                   }
 
