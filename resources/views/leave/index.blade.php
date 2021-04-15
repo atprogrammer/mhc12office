@@ -12,9 +12,6 @@
 
     <div class="container">
        
-     
-        <p><input class="btn btn-primary" type="submit" data-toggle="modal" data-target="#exampleModal" value="เพิ่มวันลา"></p>
-        
        
             <div class="alert alert-success" role="alert">
                 <h5>ปฏิทินของฉัน</h5>
@@ -23,7 +20,7 @@
         <div class="response alert alert-success mt-2" style="display: none;"></div>
         <div class="row">
             <div class="col">
-                <br><br><br>
+                <p><input class="btn btn-primary" type="submit" data-toggle="modal" data-target="#exampleModal" value="เพิ่มวันลา"></p>
                 <div class="card " >
                     <div class="card-header bg-success">
                       <center> แถบสีสถานะ  </center>
