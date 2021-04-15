@@ -16,6 +16,7 @@
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
   <script src="{{ asset('js/jquery.min.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
 
+
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" /> --}}
   <link rel="stylesheet" href="{{asset('js/fullcalendar.css')}}">
 
@@ -24,6 +25,9 @@
 
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script> --}}
   <script src="{{ asset('js/fullcalendar.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->
+
+
+  <script src="{{ asset('js/th.js') }}"></script> <!-- fullcalendar ภาษาไทย-->
   
   {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
   <script src="{{ asset('js/sweetalert2@10.js') }}"></script> <!-- สร้างเพิ่มใน public/js-->

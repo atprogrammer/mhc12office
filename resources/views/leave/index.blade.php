@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 @section('content')
 
+{{-- <style type="text/css">
+    #calendar{
+        margin: 0 auto;
+        font-size:16px;
+    }        
+    </style> --}}
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -15,8 +21,25 @@
               </div>
 
         <div class="response alert alert-success mt-2" style="display: none;"></div>
-        <div id='calendar'></div>  
+        <div class="row">
+            <div class="col">
+                <br><br><br>
+                <div class="card " >
+                    <div class="card-header bg-success">
+                      <center> แถบสีสถานะ  </center>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item bg-warning">ลาป่วย</li>
+                      <li class="list-group-item bg-primary">ลาพักผ่อน</li>
+                    </ul>
+                  </div>  
+            </div>
+            <div class="col-10">
+                <div  id='calendar' style='border-radius:10px;border:0.5px solid rgb(24, 148, 30);background:#FFF'></div>  
+            </div>
+        </div>
     </div>
+    <br>
 
 
     

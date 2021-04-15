@@ -12,8 +12,6 @@ class LeaveController extends Controller
 {
     public function index()
     {
-        // return view('leave.index');
-
         if (request()->ajax()) {
 
             $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
