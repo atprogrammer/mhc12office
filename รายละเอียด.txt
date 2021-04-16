@@ -1,0 +1,13 @@
+/-----------------รวมคำสั่ง--------------------/
+composer create-project --prefer-dist laravel/laravel blog "5.8"
+
+php artisan make:controller ExampleController
+
+php artisan make:model -m Example
+
+php artisan --version
+
+php artisan migrate
+
+php artisan serve
+
