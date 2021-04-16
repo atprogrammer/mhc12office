@@ -22,12 +22,12 @@
             <div class="col">
                 <p><input class="btn btn-primary" type="submit" data-toggle="modal" data-target="#exampleModal" value="เพิ่มวันลา"></p>
                 <div class="card " >
-                    <div class="card-header bg-success">
+                    <div class="card-header bg-primary">
                       <center> แถบสีสถานะ  </center>
                     </div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item bg-warning">ลาป่วย</li>
-                      <li class="list-group-item bg-primary">ลาพักผ่อน</li>
+                      <li class="list-group-item bg-success">ลาพักผ่อน</li>
                     </ul>
                   </div>  
             </div>
@@ -56,20 +56,24 @@
                         @csrf   
                         <div class="form-group">
                             <label>ประเภทการลา</label>
-                            <input type="text" name="name" id="name" class="form-control"/>
+                            {{-- <input type="text" name="name" id="name" class="form-control"/> --}}
+                              <select class="form-control" id="name" name="name">
+                                <option value="ลาป่วย">ลาป่วย</option>
+                                <option value="ลาพักผ่อน">ลาพักผ่อน</option>
+                              </select>
                         </div>  
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('lday', 'วันที่ลา', ['class' => 'col-sm-4 col-form-label']) !!} 
-                                    {!! Form::text('auther_name', \Carbon\Carbon::now()->format('d/m/Y'),['class' => 'form-control','id' => 'datepicker']) !!} 
+                                    {!! Form::text('datepicker', \Carbon\Carbon::now()->format('d/m/Y'),['class' => 'form-control','id' => 'datepicker']) !!} 
                                 </div>  
                             </div>
                             <div class="form-group col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('lday', 'ถึงวันที่', ['class' => 'col-sm-4 col-form-label']) !!} 
-                                    {!! Form::text('description', \Carbon\Carbon::now()->format('d/m/Y'),['class' => 'form-control','id' => 'datepicker2']) !!} 
+                                    {!! Form::text('datepicker2', \Carbon\Carbon::now()->format('d/m/Y'),['class' => 'form-control','id' => 'datepicker2']) !!} 
                                 </div>  
                             </div>
                         </div>  
@@ -81,18 +85,35 @@
                             <label>เบอร์โทรติดต่อ</label>
                             <input type="text" name="" id="" class="form-control"/>
                         </div>
-                        <div class="form-group">
-                            <label>ผู้ตรวจสอบ</label>
-                            <input type="text" name="" id="" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label>ผู้บังคับบัญชา</label>
-                            <input type="text" name="" id="" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label>ผู้อนุญาติ</label>
-                            <input type="text" name="" id="" class="form-control"/>
-                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <label>ผู้ตรวจสอบ</label>
+                                      <select class="form-control" id="" name="">
+                                        <option value="">#########</option>
+                                        <option value="">#########</option>
+                                      </select>
+                                </div>  
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <label>ผู้บังคับบัญชา</label>
+                                      <select class="form-control" id="" name="">
+                                        <option value="">{{$ch}}</option>
+                                        <option value="">#########</option>
+                                      </select>
+                                </div>  
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <label>ผู้อนุญาติ</label>
+                                    <select class="form-control" id="" name="">
+                                        <option value="">#########</option>
+                                        <option value="">#########</option>
+                                      </select>
+                                </div>  
+                            </div>
+                        </div>  
                     </form>
                 </div>
                 <div class="modal-footer">

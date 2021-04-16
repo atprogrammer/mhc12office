@@ -22,7 +22,13 @@ class LeaveController extends Controller
             return Response::json($data);
 
         }
-        return view('leave.index');
+
+
+        //return view('leave.index');
+
+        return view('leave.index', [
+            'ch' => 'old',
+        ]);
 
     }
 
@@ -33,10 +39,17 @@ class LeaveController extends Controller
         $end = \Carbon\Carbon::createFromFormat('d/m/Y', $request->end)
         ->format('Y-m-d 12:00:00'); //แปลงวันที่ลงฐานข้อมูล (เพิ่ม 12 เพื่อสร้างเวลาข้ามวัน)
 
+        if($request->title=="ลาป่วย"){
+            $color = "yellow";
+        }elseif($request->title=="ลาพักผ่อน"){
+            $color = "green";
+        }
+
         $insertArr = [
             'title' => $request->title,
             'start' => $start,
             'end' => $end,
+            'color' => $color,
         ];
         $event = LeaveDate::insert($insertArr);
         return Response::json($event);

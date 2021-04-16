@@ -10,6 +10,6 @@ class LeaveDate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title','start','end',
+        'title','start','end','color',
     ];
 }

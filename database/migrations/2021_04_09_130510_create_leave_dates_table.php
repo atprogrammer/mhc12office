@@ -18,7 +18,7 @@ class CreateLeaveDatesTable extends Migration
             $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->string('color', 50)->nullable();//สีของ event สามารถว่างได้
+            $table->string('color', 50)->nullable();//สีของ event สามารถว่างได้ 
             $table->timestamps();
         });
     }
