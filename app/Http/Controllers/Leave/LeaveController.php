@@ -24,8 +24,6 @@ class LeaveController extends Controller
         }
 
 
-        //return view('leave.index');
-
         return view('leave.index', [
             'ch' => 'old',
         ]);
